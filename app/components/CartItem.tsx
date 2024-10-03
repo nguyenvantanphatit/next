@@ -1,4 +1,3 @@
-// src/components/CartItem.tsx
 import React from 'react'
 import { useCartStore } from '@/lib/store'
 import { updateCartItem, deleteCartItem } from '@/lib/api'

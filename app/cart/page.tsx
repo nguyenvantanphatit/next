@@ -1,6 +1,4 @@
-// src/app/cart/page.tsx
 'use client'
-
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useCartStore } from '@/lib/store'

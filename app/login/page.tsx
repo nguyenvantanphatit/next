@@ -1,7 +1,5 @@
 'use client'
-
 import AuthForm from "../components/AuthForm"
-
 export default function LoginPage() {
   return (
     <div className="container mx-auto mt-10">

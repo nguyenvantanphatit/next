@@ -1,4 +1,3 @@
-// src/components/ProductCard.tsx
 import React from 'react'
 import Link from 'next/link'
 import { useCartStore } from '@/lib/store'
