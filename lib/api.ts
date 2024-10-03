@@ -4,15 +4,22 @@ import { useAuthStore } from './store'
 
 const api = axios.create({
   baseURL: 'https://api.echomedi.com/api',
+  timeout: 60000,
 })
 
 api.interceptors.request.use((config) => {
   const token = useAuthStore.getState().token
-  if (token && config.url !== '/products') {
-    config.headers.Authorization = `Bearer ${token}`
+  const isNoAuthRequired = config.url?.startsWith('/products') || config.url?.startsWith('/blog');
+
+  if (token && !isNoAuthRequired) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
   return config
-})
+},
+  (error) => {
+    return Promise.reject(error);
+  }
+)
 
 export const login = async (identifier: string, password: string) => {
   const response = await api.post('/user/auth', { identifier, password })
@@ -59,5 +66,5 @@ export const getAllProducts = async (page = 1, pageSize = 10000) => {
 
 export const getProductBySlug = async (slug: string) => {
   const response = await api.get(`/product/findOne/${slug}`)
-  return response.data
+  return response.data.product
 }

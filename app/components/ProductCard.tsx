@@ -21,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, label, price, slug, en_la
 
   return (
     <div className="border p-4 rounded">
-      <Link href={`/products/${en_slug ? en_slug : slug}`}>
+      <Link href={`/products/${slug}`}>
         <h2 className="font-semibold">{en_label ? en_label : label}</h2>
       </Link>
       <p>Price: ${price}</p>

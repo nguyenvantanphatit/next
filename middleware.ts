@@ -6,11 +6,12 @@ export function middleware(request: NextRequest) {
 
   const authRequiredPaths = ['/dashboard', '/cart']
 
-  if (authRequiredPaths.some(path => request.nextUrl.pathname.startsWith(path))) {
-    if (!userStorage) {
-      return NextResponse.redirect(new URL('/login', request.url))
-    }
+  const isAuthRequired = authRequiredPaths.some(path => request.nextUrl.pathname.startsWith(path))
+
+  if (isAuthRequired && !userStorage) {
+    return NextResponse.redirect(new URL('/login', request.url))
   }
+
 
   return NextResponse.next()
 }
