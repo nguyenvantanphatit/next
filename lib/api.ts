@@ -9,9 +9,8 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const token = useAuthStore.getState().token
-  const isNoAuthRequired = config.url?.startsWith('/products') || config.url?.startsWith('/blog');
-
-  if (token && !isNoAuthRequired) {
+  const isNoAuthRequired = config.url?.startsWith('/cart');
+  if (token && isNoAuthRequired) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config
